@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 import asyncio
-import typing as t
 from enum import Enum
 from functools import partial
+import typing as t
 
 from aiohttp import ClientResponse, ClientSession
-
 import attr
 
 from pixels import exceptions as e
