@@ -70,7 +70,11 @@ class Client:
         _headers = {"Authorization": f"Bearer {self._api_key}"}
         while True:
             request = self.session.request(
-                method, endpoint.value, params=params, json=json, headers=_headers,
+                method,
+                endpoint.value,
+                params=params,
+                json=json,
+                headers=_headers,
             )
             async with request as response:
                 status, cooldown = self.limiter.notify(endpoint, response.headers)
@@ -103,7 +107,7 @@ class Client:
 
     async def set_pixel(self, pxl: pixel.Pixel) -> dict[str, str]:
         return await self._request(
-            Endpoint.SET_PIXEL, "post", _just_decode, json=attr.asdict(pxl)
+            Endpoint.SET_PIXEL, "post", _just_decode, json=pxl.to_json()
         )
 
 

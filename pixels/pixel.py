@@ -57,6 +57,13 @@ class Pixel:
             RGB.from_hex_string(m["rgb"]),
         )
 
+    def to_json(self) -> dict:
+        return {
+            "x": self.x,
+            "y": self.y,
+            "rgb": self.rgb.as_hex_string(),
+        }
+
 
 @attr.s(frozen=True, slots=True)
 class CanvasSize:
