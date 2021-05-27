@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pixels"
+version = "0.1.0"
+description = ""
+authors = ["PureFunctor <purefunctor@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Pillow = "^8.2.0"
+aiohttp = "^3.7.4"
+attrs = "^21.2.0"
+python-dotenv = "^0.17.1"
+loguru = "^0.5.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.5b1"
+flake8 = "^3.9.2"
+flake8-annotations = "^2.6.2"
+flake8-import-order = "^0.18.1"
+mypy = "^0.812"
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
