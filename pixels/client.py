@@ -118,7 +118,7 @@ class _Active:
     reset: int = attr.ib(converter=int)
 
     def is_low(self) -> bool:
-        return self.remaining == 1
+        return self.remaining == 0
 
 
 @attr.s
