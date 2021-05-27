@@ -15,6 +15,8 @@ async def main() -> None:
     async with Client(token) as client:
         size = await client.get_size()
         canvas = await client.get_pixels(size)
+        pixel = await client.get_pixel(0, 0)
+        print(pixel)
         canvas.to_image().show()
 
 
