@@ -112,14 +112,15 @@ class Client:
     async def get_size(self) -> pixel.CanvasSize:
         return await self._request(Endpoint.GET_SIZE, "get", pixel._decode_canvas_size)
 
-    async def set_pixel(self, pxl: pixel.Pixel) -> dict[str, str]:
+    async def set_pixel(self, pxl: pixel.Pixel) -> str:
         return await self._request(
-            Endpoint.SET_PIXEL, "post", _just_decode, json=pxl.to_json()
+            Endpoint.SET_PIXEL, "post", _set_pixel_decode, json=pxl.to_json()
         )
 
 
-async def _just_decode(r: ClientResponse) -> dict[str, str]:
-    return await r.json()
+async def _set_pixel_decode(r: ClientResponse) -> str:
+    m = await r.json()
+    return m["message"]
 
 
 Cls = t.TypeVar("Cls")
