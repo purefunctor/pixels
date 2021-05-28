@@ -2,11 +2,13 @@ import asyncio
 from os import getenv
 
 from dotenv import load_dotenv
+from loguru import logger
 
 from pixels.client import Client
 
 
 async def main() -> None:
+    logger.enable("pixels")
 
     token = getenv("PIXELS_TOKEN")
     if token is None:

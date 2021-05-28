@@ -10,6 +10,7 @@ import attr
 
 from pixels import exceptions as e
 from pixels import pixel
+from pixels.logger import logger
 
 
 T = t.TypeVar("T")
@@ -66,6 +67,9 @@ class Client:
         json: t.Mapping = None,
         params: t.Mapping[str, str] = None,
     ) -> T:
+        logger.debug(
+            f"{endpoint.name} {json} {params}"
+        )
         _headers = {"Authorization": f"Bearer {self._api_key}"}
         while True:
             request = self.session.request(
@@ -78,6 +82,10 @@ class Client:
             async with request as response:
                 cooldown = self.limiter.consume_headers(endpoint, response.headers)
                 if cooldown is not None:
+                    logger.warning(
+                        f"{endpoint.name} You are being rate limited!"
+                        "Waiting {cooldown} seconds."
+                    )
                     await asyncio.sleep(cooldown)
                 if response.status >= 500:
                     raise e.FatalGatewayError("server panic!")
