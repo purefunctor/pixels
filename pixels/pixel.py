@@ -4,12 +4,10 @@ import itertools
 import re
 import typing as t
 
+from aiohttp import ClientResponse
+import attr
 from PIL import Image as PIL_Image  # type: ignore
 from PIL.Image import Image  # type: ignore
-
-from aiohttp import ClientResponse
-
-import attr
 
 
 _HEX_PATTERN = "#?" + "([A-Za-z0-9]{2})" * 3
